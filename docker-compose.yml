@@ -1,0 +1,12 @@
+services:
+  # Batch converter: reads a JSON batch of decimal strings and prints the
+  # binary16 encodings. Default run converts samples/batch.json.
+  half:
+    build: .
+    # Convert your own batch file:
+    #   docker compose run --rm -v "$PWD/mybatch.json:/data/batch.json:ro" half
+    # or stream a batch on stdin:
+    #   docker compose run --rm -T half < mybatch.json
+    # (override the default CMD with `docker compose run --rm half /path/in/image.json`)
+    volumes:
+      - ./samples/batch.json:/data/batch.json:ro
